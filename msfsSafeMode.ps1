@@ -3,6 +3,9 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
+
+#Version 2.1 - 29 Nov 2024
+# --- Returned the missing assemblies (System.Windows.Forms, System.Drawing). Prompt now appears without incident at the center of the screen, but realizing that the sizing is still incorrect. Will fix in next release.
 # Version 2.0 - 29 Nov 2024
 # --- Made it... work. Updated $storePath, still need to verify $steamPath but I only have the MS version! Please submit a Pull request with this value if you don't mind :)
 # --- Also adjusted the form configuration so that it opens at the center of the screen and fits all of the text (increased form MinimumSize to 400x250, Size properties to buttons added to avoid more cut-off text).
@@ -10,6 +13,9 @@
 # Version 1.0 - 29 Nov 2024
 # --- Initial release.
 
+# Add required assemblies
+Add-Type -AssemblyName 'System.Windows.Forms'
+Add-Type -AssemblyName 'System.Drawing'
 
 # Create the form (application window)
 $form = New-Object System.Windows.Forms.Form
