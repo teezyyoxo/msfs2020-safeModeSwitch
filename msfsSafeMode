@@ -1,0 +1,56 @@
+# safeModeSwitch for Microsoft Flight Simulator 2020
+# Created and released by Montel G.
+# This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
+# See the README for more info.
+# 
+# Version 1.0 - 11/29/24
+# --- Initial release.
+
+
+
+Add-Type -AssemblyName System.Windows.Forms
+
+$msfsFolder = "C:\Users\$env:USERNAME\AppData\Local\Packages\Microsoft.FlightSimulator_8wekyb3d8bbwe\LocalState"
+$lockFile = "$msfsFolder\running.lock"
+
+# Function to prompt with a message box if not running in ISE
+function Show-ModeDialog {
+    if ($Host.Name -notlike "*ISE*") {
+        $choice = [System.Windows.Forms.MessageBox]::Show("Run in Safe mode?", "MSFS Startup", [System.Windows.Forms.MessageBoxButtons]::YesNo)
+        if ($choice -eq [System.Windows.Forms.DialogResult]::Yes) {
+            return "S"
+        } else {
+            return "N"
+        }
+    } else {
+        return Read-Host "Run in (S)afe mode or (N)ormal mode? [S/N]"
+    }
+}
+
+$choice = Show-ModeDialog
+
+if ($choice -eq "S") {
+    # Safe Mode: Create the running.lock file
+    New-Item -Path $lockFile -ItemType File -Force
+    Write-Host "Safe Mode selected. Launching MSFS in Safe Mode..."
+} elseif ($choice -eq "N") {
+    # Normal Mode: Remove the running.lock file if it exists
+    if (Test-Path $lockFile) {
+        Remove-Item $lockFile -Force
+    }
+    Write-Host "Normal Mode selected. Launching MSFS..."
+} else {
+    Write-Host "Invalid choice. Exiting script."
+    exit
+}
+
+# Launch MSFS 2020 (MS Store version)
+$msfsExecutablePath = "C:\XboxGames\Microsoft Flight Simulator\Content\gamelaunchhelper.exe"
+Start-Process -FilePath $msfsExecutablePath -Verb RunAs
+
+# Prevent window from closing immediately when running from the desktop
+# if ($Host.Name -notlike "*ISE*") {
+#   [System.Windows.Forms.MessageBox]::Show("Press OK to close this window", "MSFS Startup")
+
+#Exit the script once the sim is launched
+exit
