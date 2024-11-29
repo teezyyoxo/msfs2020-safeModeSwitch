@@ -3,20 +3,22 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
-# Version 2.4 - 29 Nov 2024
+# Version 2.4.1
+# --- Minor UI tweaks/improvements.
+# Version 2.4
 # --- Introduction of v2 of the UI - much nicer to look at, although extremely basic.
 # --- Window size, button placement and text alignment(s) adjusted.
-# Version 2.3 - 29 Nov 2024
+# Version 2.3
 # --- Functional enhancements. Minor UI corrections.
-# Version 2.2 - 29 Nov 2024
+# Version 2.2
 # --- Fixed window sizing. Button alignment and radio button label clipping to be fixed in a future build of the script...
-# Version 2.1 - 29 Nov 2024
+# Version 2.1
 # --- Returned the missing assemblies (System.Windows.Forms, System.Drawing). Prompt now appears without incident at the center of the screen, but realizing that the sizing is still incorrect. Will fix in next release.
-# Version 2.0 - 29 Nov 2024
+# Version 2.0
 # --- Made it... work. Updated $storePath, still need to verify $steamPath but I only have the MS version! Please submit a Pull request with this value if you don't mind :)
 # --- Also adjusted the form configuration so that it opens at the center of the screen and fits all of the text (increased form MinimumSize to 400x250, Size properties to buttons added to avoid more cut-off text).
 # --- Blah blah blah...
-# Version 1.0 - 29 Nov 2024
+# Version 1.0
 # --- Initial release.
 
 # Add required assemblies
@@ -74,7 +76,7 @@ $form.Controls.Add($cancelButton)
 $storeRadio = New-Object System.Windows.Forms.RadioButton
 $storeRadio.Text = 'Microsoft Store version'
 $storeRadio.Checked = $true
-$storeRadio.Location = New-Object System.Drawing.Point(50, 100)  # Adjusted radio button position
+$storeRadio.Location = New-Object System.Drawing.Point(50, 95)  # Adjusted radio button position
 $storeRadio.Size = New-Object System.Drawing.Size(150,30) # FINALLY ADJUSTED RADIO BUTTON **LABEL** POSITION
 $form.Controls.Add($storeRadio)
 # ---
@@ -86,9 +88,9 @@ $form.Controls.Add($steamRadio)
 
 # Create a checkbox for auto-starting MSFS
 $autoStartCheckbox = New-Object System.Windows.Forms.CheckBox
-$autoStartCheckbox.Text = 'Auto-start MSFS after OK'
-$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 150)  # Adjusted checkbox position
-$autoStartCheckbox.Size = New-Object System.Drawing.Size(150, 30)  # Width is adjusted to fit the text
+$autoStartCheckbox.Text = 'Check the box to auto-start MSFS 2020 after making your selection.'
+$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 155)  # Adjusted checkbox position
+$autoStartCheckbox.Size = New-Object System.Drawing.Size(600, 30)  # Width is adjusted to fit the text
 $form.Controls.Add($autoStartCheckbox)
 
 # Event handler for Safe Mode button

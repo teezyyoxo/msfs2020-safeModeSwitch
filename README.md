@@ -47,20 +47,22 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non PowerShell version at this time**.
 
 # Changelog
-## Version 2.4 - 29 Nov 2024
+## Version 2.4.1
+Minor UI tweaks/improvements.
+## Version 2.4
 Introduction of v2 of the UI - much nicer to look at, although extremely basic.
 Window size, button placement and text alignment(s) adjusted.
-## Version 2.3 - 29 Nov 2024
+## Version 2.3
 Functional enhancements.
 Minor UI corrections.
-## Version 2.2 - 29 Nov 2024
+## Version 2.2
 Fixed window sizing.
 Button alignment and radio button label clipping to be fixed in a future build.
-##  Version 2.1 - 29 Nov 2024
+##  Version 2.1
 Returned the missing assemblies (System.Windows.Forms, System.Drawing). Prompt now appears without incident at the center of the screen, but realizing that the sizing is still incorrect. Will fix in next release.
-## Version 2.0 - 29 Nov 2024
+## Version 2.0
 Made it... work. Updated $storePath, still need to verify $steamPath but I only have the MS version! Please submit a Pull request with this value if you don't mind :)
  Also adjusted the form configuration so that it opens at the center of the screen and fits all of the text (increased form MinimumSize to 400x250, Size properties to buttons added to avoid more cut-off text).
  Blah blah blah...
-## Version 1.0 - 29 Nov 2024
+## Version 1.0
 Initial release.
