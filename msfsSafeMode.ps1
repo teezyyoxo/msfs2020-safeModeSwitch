@@ -1,8 +1,11 @@
 # safeModeSwitch for Microsoft Flight Simulator 2020
-# Created and released by Montel G.
+# Created and released by @teezythakidd
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
+# Version 2.4 - 29 Nov 2024
+# --- Introduction of v2 of the UI - much nicer to look at, although extremely basic.
+# --- Window size, button placement and text alignment(s) adjusted.
 # Version 2.3 - 29 Nov 2024
 # --- Functional enhancements. Minor UI corrections.
 # Version 2.2 - 29 Nov 2024
@@ -27,8 +30,7 @@ $steamPath = "C:\Program Files (x86)\Steam\steamapps\common\MicrosoftFlightSimul
 # Create the form (application window)
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'msfs2020-safeModeSwitch'
-$form.Size = New-Object System.Drawing.Size(500, 300)  # Increased window size for better text fit
-$form.MinimumSize = New-Object System.Drawing.Size(500, 300)  # Prevents the user from resizing smaller than this
+$form.Size = New-Object System.Drawing.Size(500, 250)  # Increased window size for better text fit
 
 # Set a fixed window size (width x height)
 $form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog  # Makes the window non-resizable
@@ -72,18 +74,21 @@ $form.Controls.Add($cancelButton)
 $storeRadio = New-Object System.Windows.Forms.RadioButton
 $storeRadio.Text = 'Microsoft Store version'
 $storeRadio.Checked = $true
-$storeRadio.Location = New-Object System.Drawing.Point(50, 110)  # Adjusted radio button position
+$storeRadio.Location = New-Object System.Drawing.Point(50, 100)  # Adjusted radio button position
+$storeRadio.Size = New-Object System.Drawing.Size(150,30) # FINALLY ADJUSTED RADIO BUTTON **LABEL** POSITION
 $form.Controls.Add($storeRadio)
-
+# ---
 $steamRadio = New-Object System.Windows.Forms.RadioButton
 $steamRadio.Text = 'Steam version'
-$steamRadio.Location = New-Object System.Drawing.Point(50, 130)  # Adjusted radio button position
+$steamRadio.Location = New-Object System.Drawing.Point(50, 120)  # Adjusted radio button position
+$steamRadio.Size = New-Object System.Drawing.Size(150,30) # FINALLY ADJUSTED RADIO BUTTON **LABEL** POSITION
 $form.Controls.Add($steamRadio)
 
 # Create a checkbox for auto-starting MSFS
 $autoStartCheckbox = New-Object System.Windows.Forms.CheckBox
 $autoStartCheckbox.Text = 'Auto-start MSFS after OK'
-$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 160)  # Adjusted checkbox position
+$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 150)  # Adjusted checkbox position
+$autoStartCheckbox.Size = New-Object System.Drawing.Size(150, 30)  # Width is adjusted to fit the text
 $form.Controls.Add($autoStartCheckbox)
 
 # Event handler for Safe Mode button
