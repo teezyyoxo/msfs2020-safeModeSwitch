@@ -20,61 +20,73 @@ Add-Type -AssemblyName 'System.Drawing'
 # Create the form (application window)
 $form = New-Object System.Windows.Forms.Form
 $form.Text = 'Microsoft Flight Simulator 2020'
+$form.Size = New-Object System.Drawing.Size(500, 300)  # Increased window size for better text fit
+$form.MinimumSize = New-Object System.Drawing.Size(500, 300)  # Prevents the user from resizing smaller than this
 
 # Set a fixed window size (width x height)
-$form.Size = New-Object System.Drawing.Size(400, 250)
-
-# Set minimum size to ensure the form cannot be resized smaller than this
-$form.MinimumSize = New-Object System.Drawing.Size(400, 250)
+$form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog  # Makes the window non-resizable
+$form.MaximizeBox = $false  # Disables the maximize button
+$form.StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen  # Centers the form
 
 # Create a label that asks the user the question
 $label = New-Object System.Windows.Forms.Label
+$label.AutoSize = $true  # Ensures the label resizes to fit the text
 $label.Text = 'Do you want to open Microsoft Flight Simulator 2020 in Safe Mode or Normal Mode?'
-$label.AutoSize = $true
-$label.Location = New-Object System.Drawing.Point(50, 20)
+$label.Location = New-Object System.Drawing.Point(50, 20)  # Adjusted label position for new form size
 $form.Controls.Add($label)
+
+# Center the buttons
+$buttonWidth = 100
+$buttonSpacing = 10
+$totalButtonWidth = 3 * $buttonWidth + 2 * $buttonSpacing  # Total width of all buttons
+$startX = ($form.Width - $totalButtonWidth) / 2  # Calculate the X position to center buttons
+
+# Set the new positions for the buttons
+$safeButton.Location = New-Object System.Drawing.Point($startX, 80)
+$normalButton.Location = New-Object System.Drawing.Point($startX + $buttonWidth + $buttonSpacing, 80)
+$cancelButton.Location = New-Object System.Drawing.Point($startX + 2 * ($buttonWidth + $buttonSpacing), 80)
+
+# Calculate the starting X position to center the buttons
+$startX = ($form.Width - $totalButtonWidth) / 2
 
 # Create Safe Mode button
 $safeButton = New-Object System.Windows.Forms.Button
 $safeButton.Text = 'Safe Mode'
-$safeButton.Location = New-Object System.Drawing.Point(50, 60)
-$safeButton.Size = New-Object System.Drawing.Size(100, 30)  # Ensures button is large enough to fit text
+$safeButton.Location = New-Object System.Drawing.Point(50, 80)  # Adjusted button position
+$safeButton.Size = New-Object System.Drawing.Size(100, 30)  # Adjusted button size for better fit
 $form.Controls.Add($safeButton)
 
 # Create Normal Mode button
 $normalButton = New-Object System.Windows.Forms.Button
 $normalButton.Text = 'Normal Mode'
-$normalButton.Location = New-Object System.Drawing.Point(160, 60)
-$normalButton.Size = New-Object System.Drawing.Size(100, 30)  # Ensures button is large enough to fit text
+$normalButton.Location = New-Object System.Drawing.Point(160, 80)  # Adjusted button position
+$normalButton.Size = New-Object System.Drawing.Size(100, 30)  # Adjusted button size for better fit
 $form.Controls.Add($normalButton)
 
 # Create Cancel button
 $cancelButton = New-Object System.Windows.Forms.Button
 $cancelButton.Text = 'Cancel'
-$cancelButton.Location = New-Object System.Drawing.Point(270, 60)
-$cancelButton.Size = New-Object System.Drawing.Size(100, 30)  # Ensures button is large enough to fit text
+$cancelButton.Location = New-Object System.Drawing.Point(270, 80)  # Adjusted button position
+$cancelButton.Size = New-Object System.Drawing.Size(100, 30)  # Adjusted button size for better fit
 $form.Controls.Add($cancelButton)
 
 # Create radio buttons for version selection
 $storeRadio = New-Object System.Windows.Forms.RadioButton
 $storeRadio.Text = 'Microsoft Store version'
 $storeRadio.Checked = $true
-$storeRadio.Location = New-Object System.Drawing.Point(50, 100)
+$storeRadio.Location = New-Object System.Drawing.Point(50, 130)  # Adjusted radio button position
 $form.Controls.Add($storeRadio)
 
 $steamRadio = New-Object System.Windows.Forms.RadioButton
 $steamRadio.Text = 'Steam version'
-$steamRadio.Location = New-Object System.Drawing.Point(50, 120)
+$steamRadio.Location = New-Object System.Drawing.Point(50, 150)  # Adjusted radio button position
 $form.Controls.Add($steamRadio)
 
 # Create a checkbox for auto-starting MSFS
 $autoStartCheckbox = New-Object System.Windows.Forms.CheckBox
 $autoStartCheckbox.Text = 'Auto-start MSFS after OK'
-$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 160)
+$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 180)  # Adjusted checkbox position
 $form.Controls.Add($autoStartCheckbox)
-
-# Center the form on the screen
-$form.StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen
 
 # Event handler for Safe Mode button
 $safeButton.Add_Click({
