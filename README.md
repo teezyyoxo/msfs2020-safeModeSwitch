@@ -43,6 +43,7 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 2. Et voilà! Such a beautiful, well-constructed interface worth millions of dollars appears. **Make any selections you like**!
 
 ![uiV2.png](https://raw.githubusercontent.com/teezyyoxo/msfs2020-safeModeSwitch/refs/heads/main/UI%20images/uiV2-sample.png)
+
 3. Keep calm, and keep the blue side up. Happy flying in whatever mode you choose!
 
 # IS A LESS-COMPLICATED VERSION COMING?
