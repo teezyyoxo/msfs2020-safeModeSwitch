@@ -3,6 +3,8 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
+# Version 2.3 - 29 Nov 2024
+# --- Functional enhancements. Minor UI corrections.
 # Version 2.2 - 29 Nov 2024
 # --- Fixed window sizing. Button alignment and radio button label clipping to be fixed in a future build of the script...
 # Version 2.1 - 29 Nov 2024
@@ -18,9 +20,13 @@
 Add-Type -AssemblyName 'System.Windows.Forms'
 Add-Type -AssemblyName 'System.Drawing'
 
+# Define paths for MSFS based on the version selected
+$storePath = "C:\XboxGames\Microsoft Flight Simulator\Content"  # Example path for the MS Store version
+$steamPath = "C:\Program Files (x86)\Steam\steamapps\common\MicrosoftFlightSimulator"  # Example path for the Steam version
+
 # Create the form (application window)
 $form = New-Object System.Windows.Forms.Form
-$form.Text = 'Microsoft Flight Simulator 2020'
+$form.Text = 'msfs2020-safeModeSwitch'
 $form.Size = New-Object System.Drawing.Size(500, 300)  # Increased window size for better text fit
 $form.MinimumSize = New-Object System.Drawing.Size(500, 300)  # Prevents the user from resizing smaller than this
 
@@ -33,7 +39,7 @@ $form.StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen  # 
 $label = New-Object System.Windows.Forms.Label
 $label.AutoSize = $true  # Ensures the label resizes to fit the text
 $label.Text = 'Do you want to open Microsoft Flight Simulator 2020 in Safe Mode or Normal Mode?'
-$label.Location = New-Object System.Drawing.Point(50, 20)  # Adjusted label position for new form size
+$label.Location = New-Object System.Drawing.Point(35, 20)  # Adjusted label position for new form size
 $form.Controls.Add($label)
 
 # Center the buttons
@@ -44,21 +50,21 @@ $totalButtonWidth = 3 * $buttonWidth + 2 * $buttonSpacing  # Total width of all 
 # Create Safe Mode button
 $safeButton = New-Object System.Windows.Forms.Button
 $safeButton.Text = 'Safe Mode'
-$safeButton.Location = New-Object System.Drawing.Point(50, 80)  # Adjusted button position
+$safeButton.Location = New-Object System.Drawing.Point(90, 50)  # Adjusted button position
 $safeButton.Size = New-Object System.Drawing.Size(100, 30)  # Adjusted button size for better fit
 $form.Controls.Add($safeButton)
 
 # Create Normal Mode button
 $normalButton = New-Object System.Windows.Forms.Button
 $normalButton.Text = 'Normal Mode'
-$normalButton.Location = New-Object System.Drawing.Point(160, 80)  # Adjusted button position
+$normalButton.Location = New-Object System.Drawing.Point(200, 50)  # Adjusted button position
 $normalButton.Size = New-Object System.Drawing.Size(100, 30)  # Adjusted button size for better fit
 $form.Controls.Add($normalButton)
 
 # Create Cancel button
 $cancelButton = New-Object System.Windows.Forms.Button
 $cancelButton.Text = 'Cancel'
-$cancelButton.Location = New-Object System.Drawing.Point(270, 80)  # Adjusted button position
+$cancelButton.Location = New-Object System.Drawing.Point(310, 50)  # Adjusted button position
 $cancelButton.Size = New-Object System.Drawing.Size(100, 30)  # Adjusted button size for better fit
 $form.Controls.Add($cancelButton)
 
@@ -66,28 +72,36 @@ $form.Controls.Add($cancelButton)
 $storeRadio = New-Object System.Windows.Forms.RadioButton
 $storeRadio.Text = 'Microsoft Store version'
 $storeRadio.Checked = $true
-$storeRadio.Location = New-Object System.Drawing.Point(50, 130)  # Adjusted radio button position
+$storeRadio.Location = New-Object System.Drawing.Point(50, 110)  # Adjusted radio button position
 $form.Controls.Add($storeRadio)
 
 $steamRadio = New-Object System.Windows.Forms.RadioButton
 $steamRadio.Text = 'Steam version'
-$steamRadio.Location = New-Object System.Drawing.Point(50, 150)  # Adjusted radio button position
+$steamRadio.Location = New-Object System.Drawing.Point(50, 130)  # Adjusted radio button position
 $form.Controls.Add($steamRadio)
 
 # Create a checkbox for auto-starting MSFS
 $autoStartCheckbox = New-Object System.Windows.Forms.CheckBox
 $autoStartCheckbox.Text = 'Auto-start MSFS after OK'
-$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 180)  # Adjusted checkbox position
+$autoStartCheckbox.Location = New-Object System.Drawing.Point(50, 160)  # Adjusted checkbox position
 $form.Controls.Add($autoStartCheckbox)
 
 # Event handler for Safe Mode button
 $safeButton.Add_Click({
+    # Check if Microsoft Store or Steam is selected
     $selectedPath = If ($storeRadio.Checked) { $storePath } else { $steamPath }
+
+    if (-not $selectedPath) {
+        [System.Windows.Forms.MessageBox]::Show('Please select a valid version (Microsoft Store or Steam).')
+        return
+    }
+
+    # Path to the "running.lock" file
     $runningLockPath = Join-Path $selectedPath 'running.lock'
 
     # Check if the path contains spaces or special characters and wrap it in quotes
     if ($runningLockPath -match " ") {
-        $runningLockPath = "`"$runningLockPath`""
+        $runningLockPath = "$runningLockPath"
     }
 
     # Create the "running.lock" file for Safe Mode
