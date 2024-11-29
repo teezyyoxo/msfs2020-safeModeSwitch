@@ -3,6 +3,10 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
+# Version 2.5
+# --- Improved logic and error handling a LOT. Script now prints debugging info to terminal (when run in PS, PS ISE, or VS Code).
+# --- Now using gamelaunchhelper.exe for the launch instead of FlightSimulator.exe
+# --- Resolved issue where the sim would launch when the auto-start chechbox was not checked.
 # Version 2.4.2
 # --- Added logic for a custom icon for the form that is currently disabled, but "ready". Mostly.
 # Version 2.4.1
@@ -28,8 +32,9 @@ Add-Type -AssemblyName 'System.Windows.Forms'
 Add-Type -AssemblyName 'System.Drawing'
 
 # Define paths for MSFS based on the version selected
-$storePath = "C:\XboxGames\Microsoft Flight Simulator\Content"  # Example path for the MS Store version
-$steamPath = "C:\Program Files (x86)\Steam\steamapps\common\MicrosoftFlightSimulator"  # Example path for the Steam version
+$storePath = "C:\XboxGames\Microsoft Flight Simulator\Content\"  # Example path for the MS Store version
+$steamPath = "C:\Program Files (x86)\Steam\steamapps\common\MicrosoftFlightSimulator\"  # Example path for the Steam version
+$gameLaunchHelperExe = "gamelaunchhelper.exe"  # The correct executable for launching MSFS
 
 # Create the form (application window)
 $form = New-Object System.Windows.Forms.Form
@@ -102,31 +107,33 @@ $form.Controls.Add($autoStartCheckbox)
 
 # Event handler for Safe Mode button
 $safeButton.Add_Click({
-    # Check if Microsoft Store or Steam is selected
     $selectedPath = If ($storeRadio.Checked) { $storePath } else { $steamPath }
+    
+    # Construct the full path to the executable
+    $msfsExePath = Join-Path $selectedPath $gameLaunchHelperExe
+    
+    # Debugging: Output the path being used
+    Write-Host "Attempting to start MSFS in Safe Mode from: $msfsExePath"
+    
+    # Check if the executable exists before attempting to start it
+    if (Test-Path $msfsExePath) {
+        # Create the "running.lock" file for Safe Mode
+        $runningLockPath = Join-Path $selectedPath 'running.lock'
+        New-Item -Path $runningLockPath -ItemType File -Force
 
-    if (-not $selectedPath) {
-        [System.Windows.Forms.MessageBox]::Show('Please select a valid version (Microsoft Store or Steam).')
-        return
-    }
+        # Launch MSFS in Safe Mode
+        Write-Host "Safe Mode is activated. Skipping launch of MSFS."
+        
+        # Check if Auto-start is enabled
+        if ($autoStartCheckbox.Checked) {
+            Start-Process $msfsExePath
+            Write-Host "MSFS launched automatically."
+        }
 
-    # Path to the "running.lock" file
-    $runningLockPath = Join-Path $selectedPath 'running.lock'
-
-    # Check if the path contains spaces or special characters and wrap it in quotes
-    if ($runningLockPath -match " ") {
-        $runningLockPath = "$runningLockPath"
-    }
-
-    # Create the "running.lock" file for Safe Mode
-    New-Item -Path $runningLockPath -ItemType File -Force
-    [System.Windows.Forms.MessageBox]::Show('Safe Mode is activated. "running.lock" file created.')
-
-    # Check if Auto-start is enabled
-    if ($autoStartCheckbox.Checked) {
-        # Launch MSFS
-        $msfsExePath = Join-Path $selectedPath 'MicrosoftFlightSimulator.exe'
-        Start-Process $msfsExePath
+    } else {
+        # Handle the case where the executable doesn't exist
+        Write-Host "Error: The MSFS executable does not exist at $msfsExePath"
+        [System.Windows.Forms.MessageBox]::Show("Error: The MSFS executable was not found at the specified path.")
     }
 
     $form.Close()
@@ -135,21 +142,37 @@ $safeButton.Add_Click({
 # Event handler for Normal Mode button
 $normalButton.Add_Click({
     $selectedPath = If ($storeRadio.Checked) { $storePath } else { $steamPath }
-    $runningLockPath = Join-Path $selectedPath 'running.lock'
+    
+    # Construct the full path to the executable
+    $msfsExePath = Join-Path $selectedPath $gameLaunchHelperExe
+    
+    # Debugging: Output the path being used
+    Write-Host "Attempting to start MSFS in Normal Mode from: $msfsExePath"
+    
+    # Check if the executable exists before attempting to start it
+    if (Test-Path $msfsExePath) {
+        # Delete the "running.lock" file for Normal Mode if it exists
+        $runningLockPath = Join-Path $selectedPath 'running.lock'
+        if (Test-Path $runningLockPath) {
+            Remove-Item -Path $runningLockPath -Force
+            Write-Host '"running.lock" file deleted. Normal Mode activated.'
+        } else {
+            Write-Host 'No "running.lock" file found. Normal Mode activated.'
+        }
 
-    # Delete the "running.lock" file for Normal Mode if it exists
-    if (Test-Path $runningLockPath) {
-        Remove-Item -Path $runningLockPath -Force
-        [System.Windows.Forms.MessageBox]::Show('"running.lock" file deleted. Normal Mode activated.')
+        # Launch MSFS in Normal Mode
+        Write-Host "Normal Mode is activated. Launching MSFS..."
+        
+        # Check if Auto-start is enabled
+        if ($autoStartCheckbox.Checked) {
+            Start-Process $msfsExePath
+            Write-Host "MSFS launched automatically."
+        }
+
     } else {
-        [System.Windows.Forms.MessageBox]::Show('No "running.lock" file found. Normal Mode activated.')
-    }
-
-    # Check if Auto-start is enabled
-    if ($autoStartCheckbox.Checked) {
-        # Launch MSFS
-        $msfsExePath = Join-Path $selectedPath 'MicrosoftFlightSimulator.exe'
-        Start-Process $msfsExePath
+        # Handle the case where the executable doesn't exist
+        Write-Host "Error: The MSFS executable does not exist at $msfsExePath"
+        [System.Windows.Forms.MessageBox]::Show("Error: The MSFS executable was not found at the specified path.")
     }
 
     $form.Close()

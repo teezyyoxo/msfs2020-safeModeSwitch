@@ -47,6 +47,10 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non-PowerShell version at this time**.
 
 # Changelog
+## Version 2.5
+Improved logic and error handling a LOT. Script now prints debugging info to terminal (when run in PS, PS ISE, or VS Code).
+Now using gamelaunchhelper.exe for the launch instead of FlightSimulator.exe
+Resolved issue where the sim would launch when the auto-start chechbox was not checked.
 ## Version 2.4.2
 Added logic for a custom icon for the form that is currently disabled, but "ready". Mostly.
 ## Version 2.4.1
