@@ -40,15 +40,6 @@ $form.Controls.Add($label)
 $buttonWidth = 100
 $buttonSpacing = 10
 $totalButtonWidth = 3 * $buttonWidth + 2 * $buttonSpacing  # Total width of all buttons
-$startX = ($form.Width - $totalButtonWidth) / 2  # Calculate the X position to center buttons
-
-# Set the new positions for the buttons
-$safeButton.Location = New-Object System.Drawing.Point($startX, 80)
-$normalButton.Location = New-Object System.Drawing.Point($startX + $buttonWidth + $buttonSpacing, 80)
-$cancelButton.Location = New-Object System.Drawing.Point($startX + 2 * ($buttonWidth + $buttonSpacing), 80)
-
-# Calculate the starting X position to center the buttons
-$startX = ($form.Width - $totalButtonWidth) / 2
 
 # Create Safe Mode button
 $safeButton = New-Object System.Windows.Forms.Button
