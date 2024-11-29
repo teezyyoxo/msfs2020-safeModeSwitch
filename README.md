@@ -47,7 +47,10 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non PowerShell version at this time**.
 
 # Changelog
-## # Version 2.3 - 29 Nov 2024
+## Version 2.4 - 29 Nov 2024
+Introduction of v2 of the UI - much nicer to look at, although extremely basic.
+Window size, button placement and text alignment(s) adjusted.
+## Version 2.3 - 29 Nov 2024
 Functional enhancements.
 Minor UI corrections.
 ## Version 2.2 - 29 Nov 2024
