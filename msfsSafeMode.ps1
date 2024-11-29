@@ -3,6 +3,8 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
+# Version 2.4.2
+# --- Added logic for a custom icon for the form that is currently disabled, but "ready". Mostly.
 # Version 2.4.1
 # --- Minor UI tweaks/improvements.
 # Version 2.4
@@ -38,6 +40,11 @@ $form.Size = New-Object System.Drawing.Size(500, 250)  # Increased window size f
 $form.FormBorderStyle = [System.Windows.Forms.FormBorderStyle]::FixedDialog  # Makes the window non-resizable
 $form.MaximizeBox = $false  # Disables the maximize button
 $form.StartPosition = [System.Windows.Forms.FormStartPosition]::CenterScreen  # Centers the form
+
+# Icon for form - DISABLED FOR NOW.
+# Set the form's icon (replace 'icon.ico' with the path to your own .ico file)
+# $iconPath = "C:\............."  # Provide the full path to the icon file
+# $form.Icon = [System.Drawing.Icon]::ExtractAssociatedIcon($iconPath)
 
 # Create a label that asks the user the question
 $label = New-Object System.Windows.Forms.Label

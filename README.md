@@ -47,6 +47,8 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non-PowerShell version at this time**.
 
 # Changelog
+## Version 2.4.2
+Added logic for a custom icon for the form that is currently disabled, but "ready". Mostly.
 ## Version 2.4.1
 Minor UI tweaks/improvements.
 ## Version 2.4
