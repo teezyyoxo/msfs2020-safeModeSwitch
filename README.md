@@ -1,5 +1,6 @@
 # msfs2020-safeModeSwitch
 Simple PowerShell script to force the option of running MSFS202 in Safe Mode or Normal Mode by either adding or removing the running.lock file in the sim's active directory.
+
 This "tool", whatever have you, assumes you are comfortable with basic navigation of Command Prompt and/or PowerShell, and that you have PowerShell installed. If you don't have PowerShell installed, install it from [here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4).
 
 ## YPMV! - Your Path May Vary
