@@ -43,6 +43,7 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 
 # IS A LESS-COMPLICATED VERSION COMING?
 This "tool", whatever have you, assumes you are comfortable with basic navigation of Command Prompt and/or PowerShell, and that you have PowerShell installed. If you don't have PowerShell installed, install it from [here](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4).
+
 I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non PowerShell version at this time**.
 
 # Changelog
