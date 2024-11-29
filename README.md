@@ -47,6 +47,9 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non PowerShell version at this time**.
 
 # Changelog
+## # Version 2.3 - 29 Nov 2024
+Functional enhancements.
+Minor UI corrections.
 ## Version 2.2 - 29 Nov 2024
 Fixed window sizing.
 Button alignment and radio button label clipping to be fixed in a future build.
