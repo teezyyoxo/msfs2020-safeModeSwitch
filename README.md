@@ -44,7 +44,7 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 3. Keep calm, and keep the blue side up. Happy flying in whatever mode you choose!
 
 # IS A LESS-COMPLICATED VERSION COMING?
-I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non PowerShell version at this time**.
+I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non-PowerShell version at this time**.
 
 # Changelog
 ## Version 2.4.1
