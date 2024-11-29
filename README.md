@@ -6,7 +6,7 @@ Simple PowerShell script to force the option of running MSFS202 in Safe Mode or 
 
 
 # Context/Backstory
-Like most of us, I have a ton of things in my Community folder. Almost 800GB, in fact.
+Like most of us, I have a ton of things in my Community folder. 442GB, in fact.
 On occasion, the sim will CTD and prompt to open in Safe Mode or Normal Mode on the next launch as a result. 
 Being that my PC gets relatively good frame rates in Safe Mode (or in any of the Activities in Normal Mode, specifically), I've learned to not have any inhibitions or reservations about doing flights in Safe Mode here and there. Especially if I have very little patience for my PC's tendencies to be a bit dramatic in terms of impact from the sim on that particular day.
 
