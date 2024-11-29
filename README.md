@@ -40,7 +40,7 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 4. Give the shortcut a name. "Flight Simulator Launcher (2020)" will suffice, but this particular specification is not mission-critical.
 # HOW TO USE
 1. Open the shortcut.
-2. Et voila! Such a beautiful, well-constructed interface worth millions of dollars. **Make any selections you like**.![enter image description here](https://github.com/teezyyoxo/msfs2020-safeModeSwitch/blob/main/UI%20images/uiV2-sample.png?raw=true)
+2. Et voilà! Such a beautiful, well-constructed interface worth millions of dollars appears. **Make any selections you like**.![enter image description here](https://github.com/teezyyoxo/msfs2020-safeModeSwitch/blob/main/UI%20images/uiV2-sample.png?raw=true)
 3. Keep calm, and keep the blue side up. Happy flying in whatever mode you choose!
 
 # IS A LESS-COMPLICATED VERSION COMING?
