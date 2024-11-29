@@ -4,7 +4,7 @@
 # See the README for more info.
 
 
-#Version 2.1 - 29 Nov 2024
+# Version 2.1 - 29 Nov 2024
 # --- Returned the missing assemblies (System.Windows.Forms, System.Drawing). Prompt now appears without incident at the center of the screen, but realizing that the sizing is still incorrect. Will fix in next release.
 # Version 2.0 - 29 Nov 2024
 # --- Made it... work. Updated $storePath, still need to verify $steamPath but I only have the MS version! Please submit a Pull request with this value if you don't mind :)
