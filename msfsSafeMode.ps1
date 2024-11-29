@@ -3,7 +3,8 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
-
+# Version 2.2 - 29 Nov 2024
+# --- Fixed window sizing. Button alignment and radio button label clipping to be fixed in a future build of the script...
 # Version 2.1 - 29 Nov 2024
 # --- Returned the missing assemblies (System.Windows.Forms, System.Drawing). Prompt now appears without incident at the center of the screen, but realizing that the sizing is still incorrect. Will fix in next release.
 # Version 2.0 - 29 Nov 2024
