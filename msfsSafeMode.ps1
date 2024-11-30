@@ -3,6 +3,9 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
+# Version 2.6
+# --- Resolved an issue when launching the script via Desktop shortcut by adding various instances of *[System.Windows.Forms.MessageBox]*.
+# --- Code updated (slightly) for executable beta ;) TIL about ps2exe! 
 # Version 2.5
 # --- Improved logic and error handling a LOT. Script now prints debugging info to terminal (when run in PS, PS ISE, or VS Code).
 # --- Now using gamelaunchhelper.exe for the launch instead of FlightSimulator.exe
@@ -139,40 +142,77 @@ $safeButton.Add_Click({
     $form.Close()
 })
 
+# Event handler for Safe Mode button
+$safeButton.Add_Click({
+    $selectedPath = If ($storeRadio.Checked) { $storePath } else { $steamPath }
+    
+    # Define the executable path
+    $gameLaunchHelperExe = "gamelaunchhelper.exe"
+    $msfsExePath = Join-Path $selectedPath $gameLaunchHelperExe
+
+    # Debugging: Output the path being used
+    Write-Host "Attempting to start MSFS in Safe Mode from: $msfsExePath"
+    
+    # Check if the executable exists
+    if (Test-Path $msfsExePath) {
+        # Create the "running.lock" file for Safe Mode
+        $runningLockPath = Join-Path $selectedPath 'running.lock'
+        New-Item -Path $runningLockPath -ItemType File -Force | Out-Null
+        [System.Windows.Forms.MessageBox]::Show($form, 'Safe Mode is activated. "running.lock" file created.')
+
+        # Check if Auto-start is enabled
+        if ($autoStartCheckbox.Checked) {
+            Start-Process $msfsExePath
+            Write-Host "MSFS launched automatically in Safe Mode."
+        } else {
+            Write-Host "Auto-start not enabled. MSFS not launched."
+        }
+
+    } else {
+        # Handle the case where the executable doesn't exist
+        Write-Host "Error: The MSFS executable does not exist at $msfsExePath"
+        [System.Windows.Forms.MessageBox]::Show($form, "Error: The MSFS executable was not found at the specified path.")
+    }
+
+    $form.Close()
+})
+
 # Event handler for Normal Mode button
 $normalButton.Add_Click({
     $selectedPath = If ($storeRadio.Checked) { $storePath } else { $steamPath }
-    
-    # Construct the full path to the executable
+
+    # Define the executable path
+    $gameLaunchHelperExe = "gamelaunchhelper.exe"
     $msfsExePath = Join-Path $selectedPath $gameLaunchHelperExe
-    
+
     # Debugging: Output the path being used
     Write-Host "Attempting to start MSFS in Normal Mode from: $msfsExePath"
-    
-    # Check if the executable exists before attempting to start it
+
+    # Check if the executable exists
     if (Test-Path $msfsExePath) {
         # Delete the "running.lock" file for Normal Mode if it exists
         $runningLockPath = Join-Path $selectedPath 'running.lock'
         if (Test-Path $runningLockPath) {
             Remove-Item -Path $runningLockPath -Force
             Write-Host '"running.lock" file deleted. Normal Mode activated.'
+            [System.Windows.Forms.MessageBox]::Show($form, '"running.lock" file deleted. Normal Mode activated.')
         } else {
             Write-Host 'No "running.lock" file found. Normal Mode activated.'
+            [System.Windows.Forms.MessageBox]::Show($form, 'No "running.lock" file found. Normal Mode activated.')
         }
 
-        # Launch MSFS in Normal Mode
-        Write-Host "Normal Mode is activated. Launching MSFS..."
-        
         # Check if Auto-start is enabled
         if ($autoStartCheckbox.Checked) {
             Start-Process $msfsExePath
-            Write-Host "MSFS launched automatically."
+            Write-Host "MSFS launched automatically in Normal Mode."
+        } else {
+            Write-Host "Auto-start not enabled. MSFS not launched."
         }
 
     } else {
         # Handle the case where the executable doesn't exist
         Write-Host "Error: The MSFS executable does not exist at $msfsExePath"
-        [System.Windows.Forms.MessageBox]::Show("Error: The MSFS executable was not found at the specified path.")
+        [System.Windows.Forms.MessageBox]::Show($form, "Error: The MSFS executable was not found at the specified path.")
     }
 
     $form.Close()
@@ -180,6 +220,7 @@ $normalButton.Add_Click({
 
 # Event handler for Cancel button
 $cancelButton.Add_Click({
+    Write-Host "User cancelled the operation. Closing form."
     $form.Close()
 })
 

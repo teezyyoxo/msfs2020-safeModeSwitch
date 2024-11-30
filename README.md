@@ -51,6 +51,9 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 I plan on making a batch script version for everyone's convenience, along with an executable of some sort. But its easier for you to see what is actually happening with a script, so you know I'm not running any nonsense on your PC. That said, **there is no ETA on a non-PowerShell version at this time**.
 
 # Changelog
+## Version 2.6
+Resolved an issue when launching the script via Desktop shortcut by adding various instances of *[System.Windows.Forms.MessageBox]*.
+Code updated (slightly) for executable beta ;) TIL about ps2exe! 
 ## Version 2.5
  - Improved logic and error handling a LOT. Script now prints debugging info to terminal (when run in PS, PS ISE, or VS Code).
  - Now using gamelaunchhelper.exe for the launch instead of FlightSimulator.exe
