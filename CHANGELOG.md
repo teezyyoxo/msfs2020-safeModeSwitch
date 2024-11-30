@@ -1,4 +1,9 @@
 # Changelog
+
+## Version 2.6.1
+# Version 2.6.1
+Removed duplicate array
+Cleaned up response/feedback logic
 ## Version 2.6
 Resolved an issue when launching the script via Desktop shortcut by adding various instances of *[System.Windows.Forms.MessageBox]*.
 Code updated (slightly) for executable beta ;) TIL about ps2exe! 
