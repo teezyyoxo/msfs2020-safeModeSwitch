@@ -15,6 +15,7 @@ Being that my PC gets relatively good frame rates in Safe Mode (or in any of the
 That said, I did some research to understand how MSFS2020's Safe Mode worked, and as it turns out, the sim will place a **running.lock** file to the game's running directory (which, for me, is **C:\XboxGames\Microsoft Flight Simulator\Content**). 
 On the next launch of the sim with this .lock file in place, the user will be presented with the following dialog box:
 ![Problem z Microsoft Flight Simulator 2020 - Microsoft Community](https://filestore.community.support.microsoft.com/api/images/a29118b5-b472-4454-b175-b0a42233d7ac?upload=true)
+
 **[What does booting in Safe Mode do?](https://flightsimulator.zendesk.com/hc/en-us/articles/4405893759378-Safe-Mode-FAQ)**
 Per the documentation, *Safe Mode in Microsoft Flight Simulator disables temporarily: third-party content from the Marketplace and mods from the community folder.*
 This can allow for an optimal experience with the base sim; minimal lagging or frame drops, screen tearing, and so on.
