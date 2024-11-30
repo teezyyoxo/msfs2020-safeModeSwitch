@@ -28,6 +28,7 @@ On the bright side, anyway, the following still work (for me) in Safe Mode with 
 	 - VATSIM
 	 - FSLTL
 		 - Though unconfirmed if the JustFlight models will work as I do not have them and use only the FSLTL models.
+ - *MSFS 2020 Map Enhancement*, by derekhe on [GitHub](https://github.com/derekhe/msfs2020-map-enhancement) (which works WONDERFULLY in **ALL** instances!!!)
  - FSUIPC
  - NVIDIA Freestyle/Game Filters
  - Reshade
