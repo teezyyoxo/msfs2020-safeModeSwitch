@@ -15,7 +15,8 @@ Being that my PC gets relatively good frame rates in Safe Mode (or in any of the
 That said, I did some research to understand how MSFS2020's Safe Mode worked, and as it turns out, the sim will place a **running.lock** file to the game's running directory (which, for me, is **C:\XboxGames\Microsoft Flight Simulator\Content**). 
 On the next launch of the sim with this .lock file in place, the user will be presented with the following dialog box:
 ![Problem z Microsoft Flight Simulator 2020 - Microsoft Community](https://filestore.community.support.microsoft.com/api/images/a29118b5-b472-4454-b175-b0a42233d7ac?upload=true)
-**[What does booting in Safe Mode do?](https://flightsimulator.zendesk.com/hc/en-us/articles/4405893759378-Safe-Mode-FAQ)**
+
+## [What does booting in Safe Mode do?](https://flightsimulator.zendesk.com/hc/en-us/articles/4405893759378-Safe-Mode-FAQ)
 Per the documentation, *Safe Mode in Microsoft Flight Simulator disables temporarily: third-party content from the Marketplace and mods from the community folder.*
 This can allow for an optimal experience with the base sim; minimal lagging or frame drops, screen tearing, and so on.
 
@@ -23,10 +24,13 @@ This can allow for an optimal experience with the base sim; minimal lagging or f
 Aside from missing custom/third-party scenery, aircraft, and other random add-ons (P42 simFX, RealTurb CAT, to name a few) there really is no downside to running the sim in Safe Mode, and all fellow simmers deserve an easily-accessible option for choosing how to launch the sim.
 On the bright side, anyway, the following still work (for me) in Safe Mode with no *observed* limitations, whatsoever:
  - SimConnect
-	 - LittleNavMap, Navigraph Charts, etc -- with real-time aircraft position tracking
-	 - FBW's flyPad and Remote MCDU server
-	 - VATSIM
-	 - FSLTL
+ 	- FBW's flyPad and Remote MCDU server
+	- VATSIM
+	- FSLTL
+   	- LittleNavMap (all features, **including real-time aircraft position tracking**)
+   	- Volanta
+ - Navigraph Simlink
+	 - Navigraph Charts (all features except the in-game Charts panel, **with real-time aircraft position tracking**)
 		 - Though unconfirmed if the JustFlight models will work as I do not have them and use only the FSLTL models.
  - *MSFS 2020 Map Enhancement*, by derekhe on [GitHub](https://github.com/derekhe/msfs2020-map-enhancement) (which works WONDERFULLY in **ALL** instances!!!)
  - FSUIPC
