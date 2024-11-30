@@ -23,10 +23,13 @@ This can allow for an optimal experience with the base sim; minimal lagging or f
 Aside from missing custom/third-party scenery, aircraft, and other random add-ons (P42 simFX, RealTurb CAT, to name a few) there really is no downside to running the sim in Safe Mode, and all fellow simmers deserve an easily-accessible option for choosing how to launch the sim.
 On the bright side, anyway, the following still work (for me) in Safe Mode with no *observed* limitations, whatsoever:
  - SimConnect
-	 - LittleNavMap, Navigraph Charts, etc -- with real-time aircraft position tracking
-	 - FBW's flyPad and Remote MCDU server
-	 - VATSIM
-	 - FSLTL
+ 	- FBW's flyPad and Remote MCDU server
+	- VATSIM
+	- FSLTL
+   	- LittleNavMap (all features, **including real-time aircraft position tracking**)
+   	- Volanta
+ - Navigraph Simlink
+	 - Navigraph Charts (all features except the in-game Charts panel, **with real-time aircraft position tracking**)
 		 - Though unconfirmed if the JustFlight models will work as I do not have them and use only the FSLTL models.
  - *MSFS 2020 Map Enhancement*, by derekhe on [GitHub](https://github.com/derekhe/msfs2020-map-enhancement) (which works WONDERFULLY in **ALL** instances!!!)
  - FSUIPC
