@@ -3,6 +3,10 @@
 # This script serves the purpose of allowing fellow Flight Simmers (that use MSFS 2020) to choose whether they want to start the sim in Safe Mode or Normal Mode.
 # See the README for more info.
 
+# Version 2.6.2
+# --- Added code that I thought would stop the "Cancel" dialog box from appearing, but that didn't go too well.
+# --- Yes - there is a "Cancel" dialog that appears when you click "Cancel" or "X" out of the program. I don't know why, and I'm having trouble figuring that out lol.
+# --- But we have an executable now. You're welcome :)
 # Version 2.6.1
 # --- Removed duplicate array
 # --- Cleaned up response/feedback logic
@@ -159,7 +163,13 @@ $normalButton.Add_Click({
 
 # Event handler for Cancel button
 $cancelButton.Add_Click({
+    # Simply close the form without additional dialogs or operations
     $form.Close()
+})
+
+# Ensure no dialog appears when closing with the "X" button
+$form.add_FormClosing({
+    # Do nothing
 })
 
 # Show the form (launch the window)
