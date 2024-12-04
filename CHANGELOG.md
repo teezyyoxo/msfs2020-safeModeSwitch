@@ -1,7 +1,11 @@
 # Changelog
 
+## Version 2.6.2
+Added code that I thought would stop the "Cancel" dialog box from appearing, but that didn't go too well.
+*Yes - there is a "Cancel" dialog that appears when you click "Cancel" or "X" out of the program. I don't know why, and I'm having trouble figuring that out lol.*
+ But we have an executable now. You're welcome :)
+
 ## Version 2.6.1
-# Version 2.6.1
 Removed duplicate array
 Cleaned up response/feedback logic
 ## Version 2.6
